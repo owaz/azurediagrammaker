@@ -1,21 +1,122 @@
+# Azure Architecture Diagram Maker
 
-Previewing README.md
-Azure Architecture Diagram Maker — distribution notes
-Version 1.1.0
+A reusable skill for creating clear Azure architecture diagrams as editable SVG and PNG assets.
 
-This folder is the shareable skill package. SKILL.md is the only runtime asset; references/host-notes.md holds optional host-specific delivery details. Nothing else is required.
+## Overview
 
-Installing a shared copy
-Import the azure-architecture-diagram-maker folder (or just SKILL.md) through the host's documented skill import/create mechanism. For instruction-only hosts, paste the body of SKILL.md; name it azure-architecture-diagram-maker with display title Azure Architecture Diagram Maker. Reload before first use. No fixed installation directory, extra files, or inherited environment variables are required.
+This project contains the `SKILL.md` instruction set for an Azure architecture diagram generator. It is designed to help an agent or host produce:
 
-First-use smoke check: ask for "Client -> App Service -> SQL Database; request flow only; use labelled boxes if icons are unavailable." Expect an SVG and, when rendering/viewing tools exist, an inspected PNG. Use synthetic data. Success on one host does not prove PNG capability on another.
+- Azure architecture diagrams from prompts or supplied artifacts
+- Diagram cleanup and refinement for existing Azure visuals
+- Editable, self-contained SVG output
+- Optional PNG previews when the host supports rendering or viewing
 
-Sharing this skill
-Share only this folder's contents (SKILL.md, README.md, references/host-notes.md). Exclude helpers, node_modules, .git, caches, tokens, logs, customer examples, outputs, identities, machine paths, and private URLs. Retain the title, version, integration attribution (the optional renderer integration was inspired by Arturo Quiroga's Azure Architecture Diagram Builder; its repository, code and assets are not included or required), and the public icon-source guidance (https://learn.microsoft.com/en-us/azure/architecture/icons/). Nothing is automatically published.
+The focus is on:
+- accurate Azure topology
+- clean layout and readable flow
+- faithful traffic direction and boundaries
+- editable vector output suitable for documentation and review
 
-What the skill does not do
-Diagram-only. It does not run Well-Architected/WAF assessments, scoring, costing, hardening, deployment, IaC/Bicep/Terraform generation, manifests, or subscription/resource discovery. It requires no Git repository, cloned builder, account, API key, subscription, or custom MCP; an already-configured, approved renderer is optional.
+## What this skill does not do
 
-Changelog
-1.1.0 — Description rewritten with explicit trigger phrases and delegation to pptx / image-operations; added When NOT to Use, Quick start, Output format and Guardrails sections; moved installation/sharing notes to this README and host-specific delivery details to references/host-notes.md; spec-legal metadata block (category, icon, version). No diagram-fidelity, SVG-safety, rasterisation or acceptance-gate rules were removed.
-1.0.0 — Initial single-file release.
+This skill is strictly diagram-focused. It does not provide:
+
+- Well-Architected / WAF assessments
+- scoring or benchmarking
+- cost estimation
+- hardening guidance
+- deployment planning
+- IaC generation
+- manifests or resource discovery
+
+If a detail is missing or ambiguous, it asks for the required information instead of inventing topology.
+
+## Included files
+
+- `SKILL.md` — the reusable instruction set
+- `README.md` — project overview and usage notes
+
+## How to use the skill
+
+### 1) Import the skill
+
+Import `SKILL.md` into your host’s skill or instruction system.
+
+Suggested name:
+- `azure-architecture-diagram-maker`
+
+Suggested display title:
+- `Azure Architecture Diagram Maker`
+
+### 2) Describe the architecture
+
+Use a prompt that clearly states the Azure resources, flow direction, and any required layout constraints.
+
+Example prompts:
+- "Create an Azure architecture diagram for a web application with App Service, SQL Database, and Azure Front Door."
+- "Refine this diagram to match the topology: Client -> API Management -> Function App -> Cosmos DB, with WAF in front of the public endpoint."
+- "Generate an SVG for this Azure VNet design with subnets, firewall, and private endpoints."
+- "Create a PNG preview of this architecture and keep it readable at full scale."
+
+### 3) Choose output format
+
+By default, the skill prefers:
+- editable SVG
+- PNG preview when supported by the environment
+
+You can also request:
+- SVG only
+- PNG only
+- SVG plus PNG
+
+## Quick start
+
+1. Open your agent or skill-enabled environment.
+2. Import `SKILL.md`.
+3. Provide a prompt describing the Azure architecture.
+4. Review the generated SVG.
+5. Request a PNG preview if the host supports rasterization.
+6. Refine the diagram with more topology detail if needed.
+
+## Diagram quality standards
+
+The skill is designed to produce diagrams that are:
+
+- readable and logically structured
+- faithful to the described Azure topology
+- suitable for technical documentation and review
+- editable in SVG format
+- self-contained without external assets
+
+It applies best practices such as:
+- clear left-to-right primary flow
+- separate lanes for different traffic classes when needed
+- explicit labels and return-path handling
+- valid connector routing
+- readable legends and consistent styling
+- safe SVG construction without scripts or external dependencies
+
+## Output expectations
+
+When used in a compatible environment, the expected output is:
+
+- an SVG diagram
+- a PNG preview if rasterization is available
+- a final response that includes the output artifact link or attachment
+- any necessary assumptions or limitations clearly stated
+
+## Repository purpose
+
+This repository stores the reusable skill definition and documentation for Azure diagram generation workflows. The skill is intended to be imported into a host environment and used without requiring a repository clone, custom server, or Azure sign-in.
+
+## Example use cases
+
+- Draw an Azure App Service + SQL architecture
+- Show API Management routing to backend services
+- Model Azure Front Door + WAF + App Service patterns
+- Create an Azure VNet diagram with subnets, route tables, and private endpoints
+- Refine an existing architecture sketch into a cleaner, review-ready diagram
+
+## Notes
+
+This project is intentionally focused on diagram creation rather than architecture evaluation. It is best used when the goal is to generate or improve clear Azure system visuals for communication, documentation, and review.
